@@ -5,20 +5,21 @@ import FontSize from "@/constants/FontSize";
 import Spacing from "@/constants/Spacing";
 import { homes, tags } from "@/data";
 import { Ionicons, Octicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import { useState } from "react";
 import {
   ImageBackground,
-  SafeAreaView,
   ScrollView,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Index() {
   const [activeTag, setActiveTag] = useState<number>(tags[0].id);
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1, backgroundColor: Colors.backgroundColor }}>
       <View
         style={{
           backgroundColor: Colors.backgroundColor,
@@ -76,7 +77,7 @@ export default function Index() {
           </Text>
         </View>
         {/* Tags */}
-        <ScrollView horizontal showsHorizontalScrollIndicator>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {tags.map((tag) => (
             <TouchableOpacity
               key={tag.id}
@@ -113,7 +114,7 @@ export default function Index() {
         </ScrollView>
         {/* End Tags */}
         {/* Start Housing section */}
-        <ScrollView horizontal showsHorizontalScrollIndicator>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {homes.map((house) => {
             return (
               <TouchableOpacity
@@ -181,6 +182,7 @@ export default function Index() {
                           borderRadius: Spacing * 5,
                           justifyContent: "center",
                         }}
+                        onPress={() => router.push(`/${house.id}`)}
                       >
                         <Text
                           style={{

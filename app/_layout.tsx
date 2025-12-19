@@ -1,5 +1,6 @@
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 export default function RootLayout() {
   const [loaded] = useFonts({
@@ -12,14 +13,24 @@ export default function RootLayout() {
     return null;
 
   return (
-    <Stack screenOptions={{}}>
-      <Stack.Screen
-        name="index"
-        options={{
-          title: "Home",
-          // headerShown: false,
-        }}
-      />
-    </Stack>
+    <>
+      <Stack screenOptions={{}}>
+        <Stack.Screen
+          name="index"
+          options={{
+            title: "Home",
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="[homeId]"
+          options={{
+            title: "Home",
+            headerShown: false,
+          }}
+        />
+      </Stack>
+      <StatusBar style="dark" />
+    </>
   );
 }
